@@ -1,0 +1,44 @@
+{
+  "name": "invoice-web",
+  "version": "1.0.0",
+  "description": "An invoicing web app built with MERN stacj",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sendistephen/invoice-web.git"
+  },
+  "keywords": [
+    "Invoice",
+    "MERN",
+    "Docker",
+    "NGNIX",
+    "RTK"
+  ],
+  "author": "Stephen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sendistephen/invoice-web/issues"
+  },
+  "homepage": "https://github.com/sendistephen/invoice-web#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chalk": "^5.3.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "express-async-handler": "^1.2.0",
+    "express-rate-limit": "^7.4.1",
+    "handlebars": "^4.7.8",
+    "mongoose": "^8.7.2",
+    "morgan": "^1.10.0",
+    "winston": "^3.15.0",
+    "winston-daily-rotate": "^0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
