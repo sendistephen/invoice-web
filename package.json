@@ -36,7 +36,7 @@
     "mongoose": "^8.7.2",
     "morgan": "^1.10.0",
     "winston": "^3.15.0",
-    "winston-daily-rotate": "^0.0.1"
+    "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
