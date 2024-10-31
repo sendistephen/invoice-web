@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+  # API
   api:
     restart: always
     build:
@@ -11,8 +12,8 @@ services:
       - .:/app
     depends_on:
       - mongodb
-    ports:
-      - '1993:1993'
+    # ports:
+    #   - '1993:1993'
     environment:
       NODE_ENV: ${NODE_ENV}
       MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb
@@ -20,6 +21,19 @@ services:
     networks:
       - invoice
 
+  # Client (reactjs)
+  client:
+    build:
+      context: ./client
+      dockerfile: ./docker/local/Dockerfile
+    restart: on-failure
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    networks:
+      - invoice
+
+  # MongoDB
   mongodb:
     image: mongo
     restart: always
@@ -33,6 +47,7 @@ services:
     networks:
       - invoice
 
+  # MongoDB Express
   mongo-express:
     image: mongo-express:1.0.2-20-alpine3.19
     depends_on:
@@ -48,6 +63,7 @@ services:
     networks:
       - invoice
 
+  # Mailhog
   mailhog:
     image: mailhog/mailhog
     ports:
@@ -56,9 +72,30 @@ services:
     networks:
       - invoice
 
+  # Nginx
+  nginx:
+    build:
+      context: ./docker/local/nginx
+      dockerfile: Dockerfile
+    ports:
+      - '8080:80'
+    restart: always
+    depends_on:
+      - api
+    volumes:
+      - static_volume:/app/staticfiles
+      - pdf_volume:/app/docs
+    networks:
+      - invoice
+
+# Networks
 networks:
   invoice:
     driver: bridge
 
+# Volumes
 volumes:
   mongodb-data:
+  static_volume:
+  pdf_volume:
+

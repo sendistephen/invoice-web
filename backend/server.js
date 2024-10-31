@@ -2,8 +2,13 @@ import chalk from 'chalk';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import express from 'express';
+import mongoSanitize from 'mongo-sanitize';
 import morgan from 'morgan';
 import { morganMiddleware, systemLogs } from './utils/logger.js';
+import dbConnection from './config/connectdb.js';
+
+// db connection
+await dbConnection();
 
 const app = express();
 
@@ -17,6 +22,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
+
+app.use(mongoSanitize()); // prevent objects containing ($,.) etc from being injected
 
 app.use(morganMiddleware);
 // root route
