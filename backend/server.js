@@ -33,7 +33,7 @@ app.get('/api/v1', (req, res) => {
 });
 
 app.use(notFound);
-app.use(errorHandler);
+app.use(errorHandler); 
 
 const PORT = process.env.PORT || 1993;
 
