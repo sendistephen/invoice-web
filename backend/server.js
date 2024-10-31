@@ -6,6 +6,7 @@ import mongoSanitize from 'mongo-sanitize';
 import morgan from 'morgan';
 import { morganMiddleware, systemLogs } from './utils/logger.js';
 import dbConnection from './config/connectdb.js';
+import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 // db connection
 await dbConnection();
@@ -30,6 +31,9 @@ app.use(morganMiddleware);
 app.get('/api/v1', (req, res) => {
   res.json({ message: 'Welcome to invoice app!' });
 });
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 1993;
 
