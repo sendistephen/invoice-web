@@ -1,3 +1,10 @@
+import { ADMIN, USER } from '../constants/index.js';
+
+const ROLES = {
+  User: USER,
+  Admin: ADMIN,
+};
+
 /**
  * A middleware function that checks if the user has one of the allowed roles.
  * @param  {...string} allowedRoles - The roles that are allowed to perform the request.
