@@ -1,6 +1,7 @@
 import 'dotenv';
 import mongoose from 'mongoose';
 import validator from 'validator';
+import { USER } from '../constants/index.js';
 
 const { Schema } = mongoose.Schema;
 
